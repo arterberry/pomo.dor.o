@@ -106,7 +106,7 @@ button:hover {
 .menu-button {
 	margin-left: auto;
 	margin-right: 9px;;
-	font-size: 20px;
+	font-size: 12px;
 	cursor: pointer;
 }
 
@@ -126,7 +126,9 @@ button:hover {
 .task-display {
 	text-align: left;
 	margin-left: 0;
-	font-size: 15px; 
+	font-size: 18px;
+	font-family: 'Roboto Thin', Arial, sans-serif;
+	font-weight: 300;	
 }
 
 .task-label {
@@ -182,7 +184,7 @@ button:hover {
 .task-list {
 	height: 144px;
 	overflow-y: auto;
-	margin-bottom: 15px;
+	margin-bottom: 5px;
 	border: 1px solid #e0e0e0;
 }
 
@@ -223,6 +225,7 @@ button:hover {
 	width: 24px;
 	height: 24px;
 	color: #ff4d4d;
+	margin-left: 4px;
 }
 
 .task-delete:hover svg {
@@ -235,9 +238,10 @@ button:hover {
 }
 
 .add-task-form {
-	display: flex;
-	gap: 8px;
-	margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
 }
 
 #newTaskInput,
@@ -273,17 +277,131 @@ button:hover {
 #clearAllButton {
 	background-color: #dd5555;
 	color: #ffffff;
+	display: none;
 }
 
 #clearAllButton:hover {
 	background-color: #ffbbbb;
+	display: none;
 }
 
 #backToTimerButton {
 	background-color: #999999;
 	color: white;
+	display: none;
 }
 
 #backToTimerButton:hover {
 	background-color: #888888;
+	display: none;
+}
+
+/* ===== TASK MANAGER HEADER ===== */
+.task-manager-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.task-manager-header h2 {
+    margin-bottom: 0; /* Override existing margin */
+    color: #666666;
+}
+
+/* ===== LINK STYLES ===== */
+.text-link {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 12px;    
+    cursor: pointer;
+}
+
+.text-link:hover {
+    background: none;
+}
+
+.back-link {
+    color: #999999;
+}
+
+.clear-link {
+    color: #dd5555;
+}
+
+/* ===== TASK LIST FOOTER ===== */
+.task-list-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+/* Add these category-related styles to your existing CSS */
+
+/* ===== CATEGORY STYLES ===== */
+#taskCategorySelect {
+    padding: 8px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    color: #666666;
+    background-color: white;
+    min-width: 120px;
+    cursor: pointer;
+}
+
+.category-info {
+    font-size: 12px;
+    color: #888888;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    font-style: italic;
+    display: none; /* Hidden by default */
+    padding-left: 2px;
+}
+
+.input-row {
+    display: flex;
+    gap: 8px;
+}
+
+.task-input-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#newTaskInput {
+    width: 100%;
+}
+
+/* ===== EDIT ICON STYLES ===== */
+.task-edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 8px;
+    width: 24px;
+    height: 24px;
+    color: #3c8c3c; /* Green color for edit icon */
+}
+
+.task-edit:hover svg {
+    transform: scale(1.2);
+}
+
+.task-item.editing {
+    background-color: #f0f8ff; /* Light blue background */
+    border-left: 3px solid #3c8c3c; /* Green border */
+}
+
+/* Edit mode indicator */
+.edit-mode-indicator {
+    color: #3c8c3c;
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 5px;
+    display: none; /* Hidden by default */
 }

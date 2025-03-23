@@ -9,18 +9,18 @@
 <body>
 	<div class="container">
 		<div class="timer-container">
+			<div class="task-display">
+				<div class="task-label">Task: <span id="currentTask">super task</span></div>
+			</div>
+			
 			<div class="progress-bar">
 				<div class="progress-indicator"></div>
 			</div>
 
-			<div class="control-buttons">
-				<button id="cancelButton">Cancel</button>
+			<div class="control-buttons">				
 				<button id="pauseButton">Resume</button>
-				<div class="menu-button">...</div>
-			</div>
-
-			<div class="task-display">
-				<div class="task-label">Task: <span id="currentTask">super task</span></div>
+				<button id="cancelButton">Cancel</button>
+				<div class="menu-button">Edit Task List</div>
 			</div>
 
 			<div class="timer-display">
@@ -28,15 +28,50 @@
 			</div>
 		</div>
 
-		<div class="task-manager hidden">
-			<h2>Tasks</h2>
+		<div class="task-manager hidden">			
+			<div class="task-manager-header">
+				<h2>Tasks</h2>
+				<button id="backToTimerLink" class="text-link back-link">Back to Timer</button>
+			</div>
+			
 			<div class="task-list" id="taskList"></div>
+			
+			<!-- New footer with clear all link -->
+			<div class="task-list-footer">
+				<button id="clearAllLink" class="text-link clear-link">Clear All</button>
+			</div>
 
 			<div class="bottom-controls">
 				<div class="add-task-form">
-					<input type="text" id="newTaskInput" placeholder="Add new task...">
-					<input type="number" id="taskTimeInput" min="1" max="120" value="25" placeholder="Time (min)">
-					<button id="addTaskButton">Add Task</button>
+					<!-- Task input with info text for category -->
+					<div class="task-input-container">
+						<input type="text" id="newTaskInput" placeholder="Add new task...">
+						<div id="categoryInfo" class="category-info"></div>
+						<div id="editModeIndicator" class="edit-mode-indicator">Editing task...</div>
+					</div>
+					
+					<!-- Input row for time, category and add button -->
+					<div class="input-row">
+						<input type="number" id="taskTimeInput" min="1" max="120" value="25" placeholder="Time (min)">
+						
+						<!-- New category dropdown -->
+						<select id="taskCategorySelect">
+							<option value="" disabled selected>Category</option>
+							<option value="Deep Work">Deep Work</option>
+							<option value="Shallow Work">Shallow Work</option>
+							<option value="Creative">Creative</option>
+							<option value="Technical">Technical</option>
+							<option value="Learning">Learning</option>
+							<option value="Planning">Planning</option>
+							<option value="Communication">Communication</option>
+							<option value="Admin">Admin</option>
+							<option value="Health">Health</option>
+							<option value="Personal">Personal</option>
+							<option value="Miscellaneous">Miscellaneous</option>
+						</select>
+						
+						<button id="addTaskButton">Add Task</button>
+					</div>
 				</div>
 
 				<div class="task-controls">
