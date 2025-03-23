@@ -1,0 +1,289 @@
+/* 
+ * pomo.dor.o - Pomodoro Timer Extension
+ */
+
+/* ===== FONT IMPORTS ===== */
+@font-face {
+	font-family: 'Roboto Thin';
+	src: url('Roboto-Thin.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+/* ===== RESET & BASE STYLES ===== */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	width: 750px;
+	height: 380px;
+	background-color: #f8f8f8;
+	font-family: Arial, sans-serif;
+	color: #666666;
+}
+
+.container {
+	padding: 16px;
+	background-color: white;
+	border-radius: 12px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	height: 320px;
+	display: flex;
+	flex-direction: column;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.hidden {
+	display: none !important;
+}
+
+/* ===== TIMER CONTAINER ===== */
+.timer-container {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	flex: 1;
+	padding-top: 75px;
+	/* Add space above progress bar */
+}
+
+/* Progress bar */
+.progress-bar {
+	height: 25px;
+	width: 100%;
+	background-color: #e0e0e0;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.progress-indicator {
+	height: 100%;
+	width: 0%;
+	background-color: #bbbbbb;
+	border-radius: 4px;
+	transition: width 0.3s ease;
+}
+
+/* Control buttons */
+.control-buttons {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+button {
+	padding: 6px 12px;
+	background-color: #e5e5e5;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 14px;
+	color: inherit;
+}
+
+button:hover {
+	background-color: #d0d0d0;
+}
+
+/* Button styling */
+#cancelButton {
+	background-color: #dd5555;
+	color: #ffffff;
+	text-transform: capitalize;
+}
+
+#pauseButton,
+#resumeButton {
+	background-color: #3c8c3c;
+	color: #ffffff;
+	text-transform: capitalize;
+}
+
+.menu-button {
+	margin-left: auto;
+	margin-right: 9px;;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.do-it-again-link {
+	display: inline-block;
+	color: #3c8c3c;
+	cursor: pointer;
+	margin-left: 10px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.do-it-again-link:hover {
+	text-decoration: underline;
+}
+
+.task-display {
+	text-align: left;
+	margin-left: 0;
+	font-size: 15px; 
+}
+
+.task-label {
+	color: #aaaaaa;
+}
+
+.task-label::first-letter {
+	text-transform: uppercase;
+}
+
+#currentTask {
+	color: #666666;
+	font-weight: 500;
+}
+
+/* Timer display */
+.timer-display {
+	text-align: center;
+	font-family: 'Roboto Thin', Arial, sans-serif;
+	font-weight: 300;
+	font-size: 75px;
+	color: #929292;
+}
+
+.timer-display span {
+	color: #929292;
+	font-family: 'Roboto Thin', Arial, sans-serif;
+}
+
+/* Timer alert state */
+.timer-alert .timer-display,
+.timer-alert .timer-display span {
+	color: #ff4d4d;
+}
+
+.timer-alert .task-label {
+	color: #ff4d4d;
+}
+
+/* ===== TASK MANAGER ===== */
+.task-manager {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.task-manager h2 {
+	margin-bottom: 10px;
+	color: #666666;
+}
+
+/* Task list */
+.task-list {
+	height: 144px;
+	overflow-y: auto;
+	margin-bottom: 15px;
+	border: 1px solid #e0e0e0;
+}
+
+.task-item {
+	display: flex;
+	align-items: center;
+	padding: 8px;
+	height: 48px;
+	border-bottom: 1px solid #e0e0e0;
+	cursor: pointer;
+	color: #666666;
+}
+
+.task-item:hover {
+	background-color: #f5f5f5;
+}
+
+.task-item.active-task {
+	background-color: #f0f0f0;
+	border-left: 3px solid #999999;
+}
+
+.task-text {
+	flex-grow: 1;
+}
+
+.task-time {
+	margin: 0 10px;
+	color: #888888;
+}
+
+.task-delete {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	margin-left: 8px;
+	width: 24px;
+	height: 24px;
+	color: #ff4d4d;
+}
+
+.task-delete:hover svg {
+	transform: scale(1.2);
+}
+
+/* Bottom controls */
+.bottom-controls {
+	margin-top: 15px;
+}
+
+.add-task-form {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 15px;
+}
+
+#newTaskInput,
+#taskTimeInput {
+	padding: 8px;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	color: #666666;
+}
+
+#newTaskInput {
+	flex-grow: 1;
+}
+
+#taskTimeInput {
+	width: 60px;
+}
+
+#addTaskButton {
+	background-color: #3c8c3c;
+	color: white;
+}
+
+#addTaskButton:hover {
+	background-color: #88bb88;
+}
+
+.task-controls {
+	display: flex;
+	justify-content: space-between;
+}
+
+#clearAllButton {
+	background-color: #dd5555;
+	color: #ffffff;
+}
+
+#clearAllButton:hover {
+	background-color: #ffbbbb;
+}
+
+#backToTimerButton {
+	background-color: #999999;
+	color: white;
+}
+
+#backToTimerButton:hover {
+	background-color: #888888;
+}
