@@ -28,7 +28,7 @@
 	  "service_worker": "background.js"
 	},
 	"web_accessible_resources": [{
-	  	"resources": ["sounds/14364__acclivity__chimebar_a.wav", "popup.html"],
+	  	"resources": ["sounds/14364__acclivity__chimebar_a.wav", "sounds/233800__timkahn__low-thump.wav", "popup.html"],
 	  	"matches": ["<all_urls>"]
 	}]
 }

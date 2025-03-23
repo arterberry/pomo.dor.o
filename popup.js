@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	const clearAllButton = document.getElementById('clearAllButton');
 	const backToTimerButton = document.getElementById('backToTimerButton');
 	const chimeSound = document.getElementById('chimeSound');
+	const startSound = document.getElementById('startSound');
 	const backToTimerLink = document.getElementById('backToTimerLink');
 	const clearAllLink = document.getElementById('clearAllLink');
 	const taskCategorySelect = document.getElementById('taskCategorySelect');
@@ -329,25 +330,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	function startTimer() {
 		if (currentTaskIndex < 0) return;
-
+	
 		const task = tasks[currentTaskIndex];
 		timerCompleted = false;
 		doItAgainLink.classList.add('hidden');
-
+	
 		if (timerPaused) {
 			originalDuration = pausedTimeRemaining;
 			timerPaused = false;
 		} else {
 			originalDuration = task.duration * 60;
+			startSound.play();
 		}
-
+	
 		startTime = Date.now();
 		timerRunning = true;
 		updateButtonLabels(false); // Change to Pause
 		document.body.classList.remove('timer-alert');
-
+	
 		updateProgressBar(0);
-
+	
 		timerInterval = setInterval(updateTimer, 1000);
 	}
 
