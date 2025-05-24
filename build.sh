@@ -3,10 +3,12 @@ set -e
 
 echo "Preparing build..."
 
-# Load env vars from .env
-set -o allexport
-source .env
-set +o allexport
+# Load env vars from .env if present
+if [ -f .env ]; then
+    set -o allexport
+    source .env
+    set +o allexport
+fi
 
 mkdir -p dist
 
